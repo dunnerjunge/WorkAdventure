@@ -176,7 +176,7 @@
                  "value":"computerraum.json"
                 }],
          "type":"tilelayer",
-         "visible":true,
+         "visible":false,
          "width":49,
          "x":0,
          "y":0

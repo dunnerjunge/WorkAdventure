@@ -1,4 +1,12 @@
 { "compressionlevel":-1,
+ "editorsettings":
+    {
+     "export":
+        {
+         "format":"json",
+         "target":"hidden.json"
+        }
+    },
  "height":14,
  "infinite":false,
  "layers":[
@@ -34,7 +42,7 @@
          "opacity":1,
          "properties":[
                 {
-                 "name":"exitURL",
+                 "name":"exitUrl",
                  "type":"string",
                  "value":"lobby.json"
                 }],

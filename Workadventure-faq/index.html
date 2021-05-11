@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Workadventure-FAQ</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Christian Pichler" />
+</head>
+<style>
+@font-face {
+	font-family: 'pixel-font';
+	src: url('fonts/pixelfont.ttf') format('truetype'); 
+	font-display: swap;
+	}
+*{
+	margin: 0px;
+	padding: 0px;
+	text-decoration: none;
+	box-sizing: inherit;
+	font-family: pixel-font;
+}
+
+body, html {
+  height: 100%;
+}
+
+#bg {
+height: 100%; 
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+position:relative;
+}
+
+#userimg{
+background-image: url('img/user/user1.png');
+background-position: center;
+background-repeat: no-repeat;
+background-size: contain;
+position:absolute;
+right:13vw;
+height:400px;
+width:300px;
+bottom:5rem;
+}
+
+.textbox {
+opacity:0.9;
+background-color: #006aae;
+width: 75vw;
+color: #ffffff;
+position:absolute;
+bottom:5rem;
+left:12.5vw;
+box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+}
+
+#namespace {
+font-size: 2rem;
+border-top: solid 2px #2f9ba7;
+border-bottom: solid 2px #2f9ba7;
+padding-left: 4rem;
+}
+
+#textspace {
+font-size: 1.2rem;
+min-height:4rem;
+padding: 0.5rem 2rem 0.5rem 2rem;
+}
+
+</style>
+<body>
+<div id="bg">
+	<div id="userimg"></div>
+	<div class="textbox">
+		<div id="namespace">Name</div>
+		<div id="textspace">Please enable JavaScript</div>
+	</div>
+</div>
+</body>
+</html>
+
+<script type="text/javascript">
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const user = urlParams.get('u')
+
+var textcomplete = false;
+
+const contentarray =
+[
+	{
+		"name": "Herbert",
+		"bg": "bg0" ,
+		"img": "user0",
+		"pos": "left",
+		"say": "Hallo Welt, heute ist ein wunderschöner Tag was möchtest du heute tun?"
+	},
+	
+	{
+		"name": "Gertlinde",
+		"bg": "bg1" ,
+		"img": "user1",
+		"pos": "right",
+		"say": "Hallo ich habe den schönsten Namen der Welt!"
+	}
+];
+
+document.getElementById("textspace").innerHTML = contentarray[user].say;
+
+function RndText()
+{
+	if(!textcomplete)
+	{
+		var text = "";
+		for (var i = 0; i < contentarray[user].say.length; i++)
+		{
+			setTimeout(function(i)
+			{    
+				text = text+contentarray[user].say.charAt(i);
+				document.getElementById("textspace").innerHTML = text;
+			},i * 25, i);
+		}
+		textcomplete = true;
+	}	
+}
+
+RndText();
+
+document.getElementById("namespace").innerHTML = contentarray[user].name;
+document.getElementById("bg").style.backgroundImage = "url('img/bg/" + contentarray[user].bg + ".png')";
+document.getElementById("userimg").style.backgroundImage = "url('img/user/" + contentarray[user].img + ".png')";
+</script>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Workadventure-FAQ</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Christian Pichler" />
+</head>
+<style>
+*{
+	margin: 0px;
+	padding: 0px;
+	text-decoration: none;
+	box-sizing: inherit;
+	font-family: pixel-font;
+}
+
+body, html {
+  background-color:burlywood;
+  display:flex;
+  
+}
+
+</style>
+<body>
+<div id="bg">
+	<div id="userimg"></div>
+	<div class="textbox">
+		<div id="namespace">Name</div>
+		<div id="textspace">Please enable JavaScript</div>
+	</div>
+</div>
+</body>
+</html>
+
+<script type="text/javascript">
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const user = urlParams.get('u')
+
+var textcomplete = false;
+
+const contentarray =
+[
+	{
+		"name": "Koch",
+		"bg": "bg0" ,
+		"img": "user0",
+		"pos": "left",
+		"say": "... auf den Tisch kommt heut ein Fisch so saftig süß."
+	},
+	
+	{
+		"name": "Dozent mit Brille",
+		"bg": "bg1" ,
+		"img": "user1",
+		"pos": "right",
+		"say": "Also gut, welche Abfrage gibt True zurück?"
+	},
+	
+	{
+		"name": "Studentin",
+		"bg": "bg2" ,
+		"img": "user2",
+		"pos": "right",
+		"say": "Psssst! Ich bin hier um zu lesen."
+	},
+	
+	{
+		"name": "hungrige Studentin",
+		"bg": "bg3" ,
+		"img": "user3",
+		"pos": "right",
+		"say": "Mmh, das Essen hier ist einfach lecker!"
+	},
+	
+	{
+		"name": "Justus",
+		"bg": "bg4" ,
+		"img": "user4",
+		"pos": "right",
+		"say": "Ich liebe Wirtschaft!"
+	},
+	
+	{
+		"name": "Lisa",
+		"bg": "bg5" ,
+		"img": "user5",
+		"pos": "right",
+		"say": "Ich liebe Menschen!"
+	},
+	
+	{
+		"name": "Studentin",
+		"bg": "bg6" ,
+		"img": "user6",
+		"pos": "right",
+		"say": "Ich liebe Architektur!"
+	},
+	
+	{
+		"name": "FH-Support",
+		"bg": "bg7" ,
+		"img": "user7",
+		"pos": "right",
+		"say": "Hey, schön dass du da bist. Wie kann ich dir behilflich sein?"
+	},
+	
+	{
+		"name": "Multimedia Dozent",
+		"bg": "bg8" ,
+		"img": "user8",
+		"pos": "right",
+		"say": "Hast du schon die neuen VR Spiele gesehen, die von unseren Studenten erstellt wurden?"
+	}
+];
+
+document.getElementById("textspace").innerHTML = contentarray[user].say;
+
+function RndText()
+{
+	if(!textcomplete)
+	{
+		var text = "";
+		for (var i = 0; i < contentarray[user].say.length; i++)
+		{
+			setTimeout(function(i)
+			{    
+				text = text+contentarray[user].say.charAt(i);
+				document.getElementById("textspace").innerHTML = text;
+			},i * 25, i);
+		}
+		textcomplete = true;
+	}	
+}
+
+RndText();
+
+document.getElementById("namespace").innerHTML = contentarray[user].name;
+document.getElementById("bg").style.backgroundImage = "url('img/bg/" + contentarray[user].bg + ".png')";
+document.getElementById("userimg").style.backgroundImage = "url('img/user/" + contentarray[user].img + ".png')";
+</script>

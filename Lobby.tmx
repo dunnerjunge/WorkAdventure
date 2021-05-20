@@ -834,7 +834,7 @@
  <layer id="21" name="image360grad" width="80" height="45">
   <properties>
    <property name="OpenWebsiteTrigger" value="onaction"/>
-   <property name="openWebsite" value="https://dunnerjunge.github.io/WorkAdventure/functions/360img.png"/>
+   <property name="openWebsite" value="https://vr.cuas.at/villach/labor/index.html?modal=1"/>
   </properties>
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

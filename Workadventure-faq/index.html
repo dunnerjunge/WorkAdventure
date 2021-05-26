@@ -25,52 +25,99 @@ body, html {
 }
 
 #bg {
-height: 100%; 
-background-position: center;
-background-repeat: no-repeat;
-background-size: cover;
-position:relative;
+	height: 100%; 
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position:relative;
 }
 
 #userimg{
-background-image: url('img/user/user1.png');
-background-position: center;
-background-repeat: no-repeat;
-background-size: contain;
-position:absolute;
-right:13vw;
-height:400px;
-width:300px;
-bottom:5rem;
+	background-image: url('');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	position:absolute;
+	right:13vw;
+	height:400px;
+	width:300px;
+	bottom:5rem;
 }
 
 .textbox {
-opacity:0.9;
-background-color: #006aae;
-width: 75vw;
-color: #ffffff;
-position:absolute;
-bottom:5rem;
-left:12.5vw;
-box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+	opacity:0.9;
+	background-color: #006aae;
+	width: 75vw;
+	color: #ffffff;
+	position:absolute;
+	bottom:5rem;
+	left:12.5vw;
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
 }
 
 #namespace {
-font-size: 2rem;
-border-top: solid 2px #2f9ba7;
-border-bottom: solid 2px #2f9ba7;
-padding-left: 4rem;
+	font-size: 2rem;
+	border-top: solid 2px #2f9ba7;
+	border-bottom: solid 2px #2f9ba7;
+	padding-left: 4rem;
 }
 
 #textspace {
-font-size: 1.2rem;
-min-height:4rem;
-padding: 0.5rem 2rem 0.5rem 2rem;
+	font-size: 1.2rem;
+	min-height:4rem;
+	padding: 0.5rem 2rem 0.5rem 2rem;
+}
+
+#questions {
+	width: 50vw;
+	position:absolute;
+	top:5rem;
+	left:15vw;
+}
+
+.question {
+	position:relative;
+	cursor:pointer;
+	color: #ffffff;
+	opacity:0.9;
+	background-color: #006aae;
+	font-size: 1.2rem;
+	min-height:2rem;
+	padding: 0.5rem 2rem 0.5rem 2rem;
+	border-radius:1rem;
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+	transition:200ms;
+	margin-bottom:1rem;
+}
+
+.question:after {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 50%;
+	width: 0;
+	height: 0;
+	border: 20px solid transparent;
+	border-right-color: #006aae;
+	border-left: 0;
+	border-bottom: 0;
+	margin-top: -10px;
+	margin-left: -20px;
+	transition:200ms;
+}
+
+.question:hover:after {
+	border-right-color: #2f9ba7;
+}
+.question:hover {
+	opacity:1;
+	background-color: #2f9ba7;
 }
 
 </style>
 <body>
 <div id="bg">
+	<div id="questions"></div>
 	<div id="userimg"></div>
 	<div class="textbox">
 		<div id="namespace">Name</div>
@@ -81,11 +128,25 @@ padding: 0.5rem 2rem 0.5rem 2rem;
 </html>
 
 <script type="text/javascript">
+function RndText(string)
+{
+	var printtext = string;
+
+		var text = "";
+		for (var i = 0; i < printtext.length; i++)
+		{
+			setTimeout(function(i)
+			{    
+				text = text+printtext.charAt(i);
+				document.getElementById("textspace").innerHTML = text;
+			},i * 25, i);
+		}
+		textcomplete = true;	
+}
+
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const user = urlParams.get('u')
-
-var textcomplete = false;
 
 const contentarray =
 [
@@ -94,7 +155,9 @@ const contentarray =
 		"bg": "bg0" ,
 		"img": "user0",
 		"pos": "left",
-		"say": "... auf den Tisch kommt heut ein Fisch so saftig süß."
+		"welcomeText": "... auf den Tisch kommt heut ein Fisch so saftig süß.",
+		"questions": ["Was gibt es hier zu essen?"],
+		"answers": ["Der Speiseplan hängt beim Mensaeingang."]
 	},
 	
 	{
@@ -102,7 +165,9 @@ const contentarray =
 		"bg": "bg1" ,
 		"img": "user1",
 		"pos": "right",
-		"say": "Also gut, welche Abfrage gibt True zurück?"
+		"welcomeText": "Also gut, welche Abfrage gibt True zurück?",
+		"questions": ["false == 'false'", "true && !false", "true == !true || false", "true == true xor true"],
+		"answers": ["Nein, das ist falsch!", "Ja das ist richtig!", "Nein, das ist falsch!", "Nein, das ist falsch!"],
 	},
 	
 	{
@@ -110,7 +175,9 @@ const contentarray =
 		"bg": "bg2" ,
 		"img": "user2",
 		"pos": "right",
-		"say": "Psssst! Ich bin hier um zu lesen."
+		"welcomeText": "Psssst! Ich bin hier um zu lesen.",
+		"questions": ["Wo bekomme ich ein Buch her?"],
+		"answers": ["Geh zum Rechner neben dem Bücherregal. Dort findest du alle Bücher die sich im Besitz der FH-Kärnten befinden."]
 	},
 	
 	{
@@ -118,7 +185,7 @@ const contentarray =
 		"bg": "bg3" ,
 		"img": "user3",
 		"pos": "right",
-		"say": "Mmh, das Essen hier ist einfach lecker!"
+		"welcomeText": "Mmh, das Essen hier ist einfach lecker!"
 	},
 	
 	{
@@ -126,7 +193,7 @@ const contentarray =
 		"bg": "bg4" ,
 		"img": "user4",
 		"pos": "right",
-		"say": "Ich liebe Wirtschaft!"
+		"welcomeText": "Ich liebe Wirtschaft!"
 	},
 	
 	{
@@ -134,7 +201,7 @@ const contentarray =
 		"bg": "bg5" ,
 		"img": "user5",
 		"pos": "right",
-		"say": "Ich liebe Menschen!"
+		"welcomeText": "Ich liebe Menschen!"
 	},
 	
 	{
@@ -142,7 +209,7 @@ const contentarray =
 		"bg": "bg6" ,
 		"img": "user6",
 		"pos": "right",
-		"say": "Ich liebe Architektur!"
+		"welcomeText": "Ich liebe Architektur!"
 	},
 	
 	{
@@ -150,7 +217,9 @@ const contentarray =
 		"bg": "bg7" ,
 		"img": "user7",
 		"pos": "right",
-		"say": "Hey, schön dass du da bist. Wie kann ich dir behilflich sein?"
+		"welcomeText": "Hey, schön dass du da bist. Wie kann ich dir behilflich sein?",
+		"questions": ["Wo finde ich ...?", "Wer kann mir weiterhelfen bei ...", "Was bedeutet ..."],
+		"answers": ["Gute frage!", "Der Fh-Support hilft immer gern", "Da fragst du besser Dr. Google!"]
 	},
 	
 	{
@@ -158,32 +227,34 @@ const contentarray =
 		"bg": "bg8" ,
 		"img": "user8",
 		"pos": "right",
-		"say": "Hast du schon die neuen VR Spiele gesehen, die von unseren Studenten erstellt wurden?"
+		"welcomeText": "Hast du schon die neuen VR Spiele gesehen, die von unseren Studenten erstellt wurden?"
 	}
 ];
 
-document.getElementById("textspace").innerHTML = contentarray[user].say;
-
-function RndText()
+if(!(user != null || typeof(user) != "undefined" || user > contentarray.length || user < 0))
 {
-	if(!textcomplete)
+	if(typeof(contentarray[user].questions) != "undefined")
 	{
-		var text = "";
-		for (var i = 0; i < contentarray[user].say.length; i++)
+		for(var i = 0; i < contentarray[user].questions.length;i++)
 		{
-			setTimeout(function(i)
-			{    
-				text = text+contentarray[user].say.charAt(i);
-				document.getElementById("textspace").innerHTML = text;
-			},i * 25, i);
+			var newdiv = document.createElement("div");
+			newdiv.id = "question" + i;
+			newdiv.classList.add("question");
+			newdiv.innerHTML = contentarray[user].questions[i];
+			newdiv.setAttribute("onclick", "RndText('" + contentarray[user].answers[i] + "')");
+			document.getElementById("questions").appendChild(newdiv);
 		}
-		textcomplete = true;
-	}	
+	}
+	RndText(contentarray[user].welcomeText);
+
+	document.getElementById("namespace").innerHTML = contentarray[user].name;
+	document.getElementById("bg").style.backgroundImage = "url('img/bg/" + contentarray[user].bg + ".png')";
+	document.getElementById("userimg").style.backgroundImage = "url('img/user/" + contentarray[user].img + ".png')";
+}
+else
+{
+document.getElementById("textspace").innerHTML = "User not found!";
+document.getElementById("namespace").innerHTML = "ERROR 404";
 }
 
-RndText();
-
-document.getElementById("namespace").innerHTML = contentarray[user].name;
-document.getElementById("bg").style.backgroundImage = "url('img/bg/" + contentarray[user].bg + ".png')";
-document.getElementById("userimg").style.backgroundImage = "url('img/user/" + contentarray[user].img + ".png')";
 </script>

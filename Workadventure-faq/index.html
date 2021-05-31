@@ -152,7 +152,7 @@ const contentarray =
 [
 	{
 		"name": "Koch",
-		"bg": "bg0" ,
+		"bg": "mensa.jpg" ,
 		"img": "user0",
 		"pos": "left",
 		"welcomeText": "... auf den Tisch kommt heut ein Fisch so saftig süß.",
@@ -162,7 +162,7 @@ const contentarray =
 	
 	{
 		"name": "Dozent mit Brille",
-		"bg": "bg1" ,
+		"bg": "whiteBoard.jpg" ,
 		"img": "user1",
 		"pos": "right",
 		"welcomeText": "Also gut, welche Abfrage gibt True zurück?",
@@ -172,7 +172,7 @@ const contentarray =
 	
 	{
 		"name": "Studentin",
-		"bg": "bg2" ,
+		"bg": "bibliothek.jpg" ,
 		"img": "user2",
 		"pos": "right",
 		"welcomeText": "Psssst! Ich bin hier um zu lesen.",
@@ -182,7 +182,7 @@ const contentarray =
 	
 	{
 		"name": "hungrige Studentin",
-		"bg": "bg3" ,
+		"bg": "mensa.jpg" ,
 		"img": "user3",
 		"pos": "right",
 		"welcomeText": "Mmh, das Essen hier ist einfach lecker!"
@@ -190,7 +190,7 @@ const contentarray =
 	
 	{
 		"name": "Justus",
-		"bg": "bg4" ,
+		"bg": "blackBoard.jpg" ,
 		"img": "user4",
 		"pos": "right",
 		"welcomeText": "Ich liebe Wirtschaft!"
@@ -198,7 +198,7 @@ const contentarray =
 	
 	{
 		"name": "Lisa",
-		"bg": "bg5" ,
+		"bg": "blackBoard.jpg" ,
 		"img": "user5",
 		"pos": "right",
 		"welcomeText": "Ich liebe Menschen!"
@@ -206,7 +206,7 @@ const contentarray =
 	
 	{
 		"name": "Studentin",
-		"bg": "bg6" ,
+		"bg": "blackBoard.jpg" ,
 		"img": "user6",
 		"pos": "right",
 		"welcomeText": "Ich liebe Architektur!"
@@ -214,8 +214,8 @@ const contentarray =
 	
 	{
 		"name": "FH-Support",
-		"bg": "bg7" ,
-		"img": "user7",
+		"bg": "medienlabor.jpg" ,
+		"img": "robo.png",
 		"pos": "right",
 		"welcomeText": "Hey, schön dass du da bist. Wie kann ich dir behilflich sein?",
 		"questions": ["Wo finde ich ...?", "Wer kann mir weiterhelfen bei ...", "Was bedeutet ..."],
@@ -224,7 +224,7 @@ const contentarray =
 	
 	{
 		"name": "Multimedia Dozent",
-		"bg": "bg8" ,
+		"bg": "medienlabor.jpg" ,
 		"img": "user8",
 		"pos": "right",
 		"welcomeText": "Hast du schon die neuen VR Spiele gesehen, die von unseren Studenten erstellt wurden?"
@@ -248,7 +248,7 @@ if(user != null && typeof(user) != "undefined" && user <= contentarray.length &&
 	RndText(contentarray[user].welcomeText);
 
 	document.getElementById("namespace").innerHTML = contentarray[user].name;
-	document.getElementById("bg").style.backgroundImage = "url('img/bg/" + contentarray[user].bg + ".png')";
+	document.getElementById("bg").style.backgroundImage = "url('img/bg/" + contentarray[user].bg + "')";
 	document.getElementById("userimg").style.backgroundImage = "url('img/user/" + contentarray[user].img + ".png')";
 }
 else
